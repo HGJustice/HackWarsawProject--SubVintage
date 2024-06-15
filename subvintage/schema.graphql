@@ -1,0 +1,8 @@
+type userCreated @entity(immutable: true) {
+  id: Bytes!
+  UserManagement_id: BigInt! # uint256
+  username: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
