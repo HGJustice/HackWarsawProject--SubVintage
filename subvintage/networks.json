@@ -3,6 +3,9 @@
     "UserManagement": {
       "address": "0x49e909B90FBbf4f1852b9384E3c3801331aC160E",
       "startBlock": 34152603
+    },
+    "Marketplace": {
+      "address": "0xa68ec9C82e98011aD043E4cece96AB49Ba345A82"
     }
   }
 }

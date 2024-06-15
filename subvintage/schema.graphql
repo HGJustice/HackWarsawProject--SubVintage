@@ -6,3 +6,23 @@ type userCreated @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+type listingBought @entity(immutable: true) {
+  id: Bytes!
+  Marketplace_id: BigInt! # uint256
+  buyer: Bytes! # address
+  escrowContract: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type listingCreated @entity(immutable: true) {
+  id: Bytes!
+  Marketplace_id: BigInt! # uint256
+  owner: Bytes! # address
+  description: String! # string
+  price: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
