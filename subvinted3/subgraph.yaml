@@ -24,3 +24,26 @@ dataSources:
         - event: userCreated(uint256,string)
           handler: handleuserCreated
       file: ./src/user-management.ts
+  - kind: ethereum
+    name: Marketplace
+    network: fuji
+    source:
+      address: "0x7DE773f32D6444704dE78C379F0bC7059ba02B47"
+      abi: Marketplace
+      startBlock: 34174751
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - listingBought
+        - listingCreated
+      abis:
+        - name: Marketplace
+          file: ./abis/Marketplace.json
+      eventHandlers:
+        - event: listingBought(uint256,address,address)
+          handler: handlelistingBought
+        - event: listingCreated(uint256,bytes32,address,string,uint256)
+          handler: handlelistingCreated
+      file: ./src/marketplace.ts
