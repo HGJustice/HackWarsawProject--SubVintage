@@ -24,6 +24,7 @@ contract Marketplace {
 
     event listingCreated(
         uint256 id,
+        bytes32 picUrl,
         address owner,
         string description,
         uint256 price
@@ -56,7 +57,13 @@ contract Marketplace {
 
         userToListings[msg.sender][currentListingId] = newListing;
         idToListings[currentListingId] = newListing;
-        emit listingCreated(currentListingId, msg.sender, _description, _price);
+        emit listingCreated(
+            currentListingId,
+            _ipfsLink,
+            msg.sender,
+            _description,
+            _price
+        );
         currentListingId++;
     }
 

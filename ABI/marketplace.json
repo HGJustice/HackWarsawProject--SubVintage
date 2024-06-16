@@ -51,6 +51,12 @@
       },
       {
         "indexed": false,
+        "internalType": "bytes32",
+        "name": "picUrl",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
         "internalType": "address",
         "name": "owner",
         "type": "address"
@@ -90,11 +96,6 @@
         "internalType": "bytes32",
         "name": "_ipfsLink",
         "type": "bytes32"
-      },
-      {
-        "internalType": "string",
-        "name": "_title",
-        "type": "string"
       },
       {
         "internalType": "string",
@@ -141,11 +142,6 @@
           },
           {
             "internalType": "string",
-            "name": "title",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
             "name": "description",
             "type": "string"
           },
@@ -189,11 +185,6 @@
             "internalType": "address",
             "name": "owner",
             "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "title",
-            "type": "string"
           },
           {
             "internalType": "string",
