@@ -35,8 +35,6 @@ contract UserManagement {
 
 // File: contracts/Escrow.sol
 
-pragma solidity 0.8.22;
-
 contract Escrow {
     address public buyer;
     address public seller;
@@ -113,6 +111,8 @@ contract EscrowFactory {
 
 // File: contracts/Marketplace.sol
 
+pragma solidity 0.8.22;
+
 contract Marketplace {
     UserManagement private userContract;
     EscrowFactory private factoryContract;
@@ -121,7 +121,6 @@ contract Marketplace {
         uint256 id;
         bytes32 pictureUrl;
         address owner;
-        string title;
         string description;
         uint256 price;
     }
@@ -134,6 +133,7 @@ contract Marketplace {
 
     event listingCreated(
         uint256 id,
+        bytes32 picUrl,
         address owner,
         string description,
         uint256 price
@@ -148,7 +148,6 @@ contract Marketplace {
 
     function createListing(
         bytes32 _ipfsLink,
-        string calldata _title,
         string calldata _description,
         uint256 _price
     ) external {
@@ -161,14 +160,19 @@ contract Marketplace {
             currentListingId,
             _ipfsLink,
             msg.sender,
-            _title,
             _description,
             _price
         );
 
         userToListings[msg.sender][currentListingId] = newListing;
         idToListings[currentListingId] = newListing;
-        emit listingCreated(currentListingId, msg.sender, _description, _price);
+        emit listingCreated(
+            currentListingId,
+            _ipfsLink,
+            msg.sender,
+            _description,
+            _price
+        );
         currentListingId++;
     }
 
