@@ -20,7 +20,11 @@
   },
   {
     "inputs": [
-      { "internalType": "string", "name": "_username", "type": "string" }
+      {
+        "internalType": "string",
+        "name": "_username",
+        "type": "string"
+      }
     ],
     "name": "createUser",
     "outputs": [],
@@ -29,15 +33,31 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "_userAddy", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "_userAddy",
+        "type": "address"
+      }
     ],
     "name": "getUser",
     "outputs": [
       {
         "components": [
-          { "internalType": "uint256", "name": "id", "type": "uint256" },
-          { "internalType": "string", "name": "username", "type": "string" },
-          { "internalType": "address", "name": "userAddy", "type": "address" }
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "userAddy",
+            "type": "address"
+          }
         ],
         "internalType": "struct UserManagement.User",
         "name": "",
