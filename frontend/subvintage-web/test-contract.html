@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listing Created List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .listing {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Listings Created</h1>
+  <div id="listing-list">Loading...</div>
+
+  <script>
+    const endpoint = 'https://api.studio.thegraph.com/query/71573/subvintage/version/latest';
+    const query = `
+      {
+        listingCreateds(first: 5) {
+          id
+          Marketplace_id
+          owner
+          description
+          price
+          blockNumber
+          blockTimestamp
+          transactionHash
+        }
+      }
+    `;
+
+    async function fetchListingCreateds() {
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ query }),
+        });
+
+        const result = await response.json();
+        return result.data.listingCreateds;
+      } catch (error) {
+        console.error('Error fetching listingCreateds:', error);
+        return [];
+      }
+    }
+
+    function displayListings(listings) {
+      const listingList = document.getElementById('listing-list');
+      listingList.innerHTML = '';
+
+      if (listings.length === 0) {
+        listingList.textContent = 'No listings found.';
+        return;
+      }
+
+      listings.forEach(listing => {
+        const listingDiv = document.createElement('div');
+        listingDiv.classList.add('listing');
+
+        listingDiv.innerHTML = `
+          <p><strong>ID:</strong> ${listing.id}</p>
+          <p><strong>Marketplace ID:</strong> ${listing.Marketplace_id}</p>
+          <p><strong>Owner:</strong> ${listing.owner}</p>
+          <p><strong>Description:</strong> ${listing.description}</p>
+          <p><strong>Price:</strong> ${listing.price}</p>
+          <p><strong>Block Number:</strong> ${listing.blockNumber}</p>
+          <p><strong>Block Timestamp:</strong> ${listing.blockTimestamp}</p>
+          <p><strong>Transaction Hash:</strong> ${listing.transactionHash}</p>
+        `;
+
+        listingList.appendChild(listingDiv);
+      });
+    }
+
+    async function init() {
+      const listings = await fetchListingCreateds();
+      displayListings(listings);
+    }
+
+    init();
+  </script>
+</body>
+</html>
